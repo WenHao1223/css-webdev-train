@@ -1,14 +1,19 @@
-/** @type {import('tailwindcss').Config} */
 export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
     "./node_modules/tw-elements/dist/js/**/*.js",
   ],
+  darkMode: "class",
   theme: {
     extend: {},
+    fontFamily: {
+      'sans': ['Roboto', 'Montserrat', 'sans-serif',],
+      'display': ['Poppins', 'sans-serif'],
+    },
   },
-  plugins: [require("tw-elements/dist/plugin.cjs")],
-  darkMode: "class",
+  plugins: [
+    require("tw-elements/dist/plugin.cjs"),
+  ],
 }
 

@@ -6,6 +6,7 @@ import './App.css'
 
 // pages
 import SignUp from './SignUp';
+import SignIn from './SignIn';
 import Error from './Error';
 
 // shared components
@@ -19,8 +20,9 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<SharedNavbar/>}>
-            <Route index element={<SignUp/>}></Route>
+          <Route path="/" element={<SignUp/>}></Route>
+          <Route path="/sign-in" element={<SignIn/>}></Route>
+          <Route path="/shared" element={<SharedNavbar/>}>
             <Route path="*" element={<Error/>}></Route>
           </Route>
         </Routes>
