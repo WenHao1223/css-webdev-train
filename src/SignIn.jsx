@@ -4,6 +4,18 @@ import 'boxicons';
 import { Link } from "react-router-dom";
 import './index.css';
 
+const hide = (id) => {
+  if($(`#${id}`).attr("type") === "password"){
+    $(`#div-${id}`).children(1).attr("name", "show");
+    $(`#div-${id}`).children(2).text("Show");
+    $(`#${id}`).attr("type", "text");
+  } else {
+    $(`#div-${id}`).children(1).attr("name", "hide");
+    $(`#div-${id}`).children(2).text("Hide");
+    $(`#${id}`).attr("type", "password");
+  }
+}
+
 const SignIn = () => {
   return (
     <section className="gradient-form h-full">
@@ -23,12 +35,12 @@ const SignIn = () => {
                 <label className="block">
                   <div className="flex justify-between">
                       <div className="text-gray-700">Your password</div>
-                      <div className="content-center flex cursor-pointer">
+                      <div className="content-center flex cursor-pointer" id="div-pw" onClick={() => hide("pw")}>
                         <box-icon color="#374151" name='hide'></box-icon>
                         <span className="ml-2 text-gray-700">Hide</span>
                       </div>
                     </div>
-                    <input type="password" className="mt-1 block w-full" placeholder="" />
+                    <input id="pw" type="password" className="mt-1 block w-full" placeholder="" />
                     <div className="mt-1 items-center mt-2 text-sm text-right">
                       <a className="cursor-pointer">Forget your password</a>
                     </div>

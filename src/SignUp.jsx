@@ -4,6 +4,18 @@ import 'boxicons';
 import { Link } from "react-router-dom";
 import './index.css';
 
+const hide = (id) => {
+  if($(`#${id}`).attr("type") === "password"){
+    $(`#div-${id}`).children(1).attr("name", "show");
+    $(`#div-${id}`).children(2).text("Show");
+    $(`#${id}`).attr("type", "text");
+  } else {
+    $(`#div-${id}`).children(1).attr("name", "hide");
+    $(`#div-${id}`).children(2).text("Hide");
+    $(`#${id}`).attr("type", "password");
+  }
+}
+
 const SignUp = () => {
   return (
     <section className="gradient-form h-full">
@@ -22,17 +34,17 @@ const SignUp = () => {
                 </label>
                 <label className="block">
                   <span className="text-gray-700">Full name (as per IC)</span>
-                  <input type="text" className="mt-1 block w-full" placeholder="John Bieber" />
+                  <input type="text" className="mt-1 block w-full" placeholder="Steve John" />
                 </label>
                 <label className="block">
                   <div className="flex justify-between">
                     <div className="text-gray-700">Password</div>
-                    <div className="content-center flex cursor-pointer">
+                    <div className="content-center flex cursor-pointer" id="div-pw" onClick={() => hide("pw")}>
                       <box-icon color="#374151" name='hide'></box-icon>
                       <span className="ml-2 text-gray-700">Hide</span>
                     </div>
                   </div>
-                  <input type="password" className="mt-1 block w-full" placeholder="" />
+                  <input id="pw" type="password" className="mt-1 block w-full" placeholder="" />
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-3 gap-2 text-sm mt-2">
                     <label className="mt-1 inline-flex items-center">
@@ -60,12 +72,12 @@ const SignUp = () => {
                 <label className="block">
                   <div className="flex justify-between">
                       <div className="text-gray-700">Confirm password</div>
-                      <div className="content-center flex cursor-pointer">
+                      <div className="content-center flex cursor-pointer" id="div-confirm-pw" onClick={() => hide("confirm-pw")}>
                         <box-icon color="#374151" name='hide'></box-icon>
                         <span className="ml-2 text-gray-700">Hide</span>
                       </div>
                     </div>
-                    <input type="password" className="mt-1 block w-full" placeholder="" />
+                    <input id="confirm-pw" type="password" className="mt-1 block w-full" placeholder="" />
                     <label className="mt-1 inline-flex items-center mt-2 text-sm">
                       <input className="form-radio" type="radio" style={{backgroundColor: "#6b7280"}} checked disabled/>
                       <span className="ml-2 mr-8">Password same</span>
