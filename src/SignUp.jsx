@@ -16,6 +16,25 @@ const hide = (id) => {
   }
 }
 
+const change = (id) => {
+  if(id === "email") {
+    if(!$(`#${id}`).val().match(/^(.*)@student.usm.my/gm)){
+      $(`#w-${id}`).removeClass("hidden");
+    } else {
+      $(`#w-${id}`).addClass("hidden");
+    }
+  }
+  
+  if(id === "fullName") {
+    if($(`#${id}`).val() === ""){
+      $(`#w-${id}`).removeClass("hidden");
+    } else {
+      $(`#w-${id}`).addClass("hidden");
+    }
+  }
+  
+}
+
 const SignUp = () => {
   return (
     <section className="gradient-form h-full">
@@ -30,11 +49,13 @@ const SignUp = () => {
               <div className="grid grid-cols-1 gap-6">
                 <label className="block">
                   <span className="text-gray-700">Student Email</span>
-                  <input type="email" className="mt-1 block w-full" placeholder="john123@student.usm.my"/>
+                  <input type="email" className="mt-1 block w-full" id="email" placeholder="john123@student.usm.my" onChange={ () => change("email")}/>
+                  <span className="text-danger text-xs hidden" id="w-email">Wrong email format.</span>
                 </label>
                 <label className="block">
                   <span className="text-gray-700">Full name (as per IC)</span>
-                  <input type="text" className="mt-1 block w-full" placeholder="Steve John" />
+                  <input type="text" className="mt-1 block w-full" id="fullName" placeholder="Steve John" onChange={ () => change("fullName")}/>
+                  <span className="text-danger text-xs hidden" id="w-fullName">Write something here...</span>
                 </label>
                 <label className="block">
                   <div className="flex justify-between">
@@ -85,7 +106,7 @@ const SignUp = () => {
                 </label>
                 <label className="block">
                   <span className="text-gray-700">Phone number</span>
-                  <input type="text" className="mt-1 block w-full" placeholder="+6012-345 6789" />
+                  <input type="tel" className="mt-1 block w-full" placeholder="+6012-345 6789" />
                 </label>
                 <label className="block">
                   <span className="text-gray-700">Birth date</span>
