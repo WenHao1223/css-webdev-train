@@ -7,6 +7,8 @@ import './App.css'
 // pages
 import SignUp from './SignUp';
 import SignIn from './SignIn';
+import TermsOfUse from './TermsOfUse';
+import PrivacyPolicy from './PrivacyPolicy';
 import Error from './Error';
 
 // shared components
@@ -22,6 +24,8 @@ function App() {
         <Routes>
           <Route path="/" element={<SignUp/>}></Route>
           <Route path="/sign-in" element={<SignIn/>}></Route>
+          <Route path="/terms-of-use" element={<TermsOfUse/>}></Route>
+          <Route path="/privacy-policy" element={<PrivacyPolicy/>}></Route>
           <Route path="/shared" element={<SharedNavbar/>}>
             <Route path="*" element={<Error/>}></Route>
           </Route>

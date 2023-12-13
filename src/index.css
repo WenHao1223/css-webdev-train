@@ -13,5 +13,9 @@
   }
 } */
 
+a {
+  text-decoration: underline;
+}
+
 @tailwind components;
 @tailwind utilities;
