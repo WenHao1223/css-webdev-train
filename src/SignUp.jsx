@@ -4,9 +4,6 @@ import 'boxicons';
 import { Link } from "react-router-dom";
 import './index.css';
 
-// pages
-import SignIn from "./SignIn";
-
 const SignUp = () => {
   return (
     <section className="gradient-form h-full">
