@@ -5,11 +5,11 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css'
 
 // pages
-import SignUp from './SignUp';
-import SignIn from './SignIn';
-import TermsOfUse from './TermsOfUse';
-import PrivacyPolicy from './PrivacyPolicy';
-import Error from './Error';
+import SignUp from './pages/SignUp';
+import SignIn from './pages/SignIn';
+import TermsOfUse from './pages/TermsOfUse';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import Error from './pages/Error';
 
 // shared components
 import SharedNavbar from './components/SharedNavbar';

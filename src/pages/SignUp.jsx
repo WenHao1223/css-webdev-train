@@ -2,7 +2,7 @@ import React from "react";
 import 'boxicons';
 
 import { Link } from "react-router-dom";
-import './index.css';
+import './../index.css';
 
 const hide = (id) => {
   if($(`#${id}`).attr("type") === "password"){
@@ -32,7 +32,54 @@ const change = (id) => {
       $(`#w-${id}`).addClass("hidden");
     }
   }
+
+  if(id === "pw") {
+    if($(`#${id}`).val().length >= 8) {
+      $(`#w-${id}-8`).css("backgroundColor", "#14A44D");
+    } else {
+      $(`#w-${id}-8`).css("backgroundColor", "#6b7280");
+    }
+
+    if($(`#${id}`).val().match(/[A-Z]/gm)){
+      $(`#w-${id}-upper`).css("backgroundColor", "#14A44D");
+    } else {
+      $(`#w-${id}-upper`).css("backgroundColor", "#6b7280");
+    }
+
+    if($(`#${id}`).val().match(/[a-z]/gm)){
+      $(`#w-${id}-lower`).css("backgroundColor", "#14A44D");
+    } else {
+      $(`#w-${id}-lower`).css("backgroundColor", "#6b7280");
+    }
+
+    if($(`#${id}`).val().match(/[\`\~\!\@\#\$\%\^\&\*\(\)\-\_\=\+\{\}\[\]\:\;\'\"\\\|\,\.\<\>\/\?]/gm)){
+      $(`#w-${id}-special`).css("backgroundColor", "#14A44D");
+    } else {
+      $(`#w-${id}-special`).css("backgroundColor", "#6b7280");
+    }
+
+    if($(`#${id}`).val().match(/[0-9]/gm)){
+      $(`#w-${id}-no`).css("backgroundColor", "#14A44D");
+    } else {
+      $(`#w-${id}-no`).css("backgroundColor", "#6b7280");
+    }
+  }
   
+  if(id === "confirm-pw") {
+    if($(`#${id}`).val() == $("#pw").val()){
+      $(`#w-${id}`).css("backgroundColor", "#14A44D");
+    } else {
+      $(`#w-${id}`).css("backgroundColor", "#6b7280");
+    }
+  }
+
+  if(id === "tel") {
+    if(!$(`#${id}`).val().match(/^(\+?6?01)[02-46-9]-[0-9]{7}$|^(\+?6?01)[1]-[0-9]{8}$/gm)){
+      $(`#w-${id}`).removeClass("hidden");
+    } else {
+      $(`#w-${id}`).addClass("hidden");
+    }
+  }
 }
 
 const SignUp = () => {
@@ -65,27 +112,27 @@ const SignUp = () => {
                       <span className="ml-2 text-gray-700">Hide</span>
                     </div>
                   </div>
-                  <input id="pw" type="password" className="mt-1 block w-full" placeholder="" />
+                  <input id="pw" type="password" className="mt-1 block w-full" placeholder="" onChange={ () => change("pw")}/>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-3 gap-2 text-sm mt-2">
                     <label className="mt-1 inline-flex items-center">
-                      <input className="form-radio" type="radio" style={{backgroundColor: "#6b7280"}} checked disabled/>
+                      <input className="form-radio" id="w-pw-8" type="radio" style={{backgroundColor: "#6b7280"}} checked disabled/>
                       <span className="ml-2 mr-8">Use 8 or more characters</span>
                     </label>
                     <label className="mt-1 inline-flex items-center">
-                      <input className="form-radio hover:bg-gray-500" type="radio" style={{backgroundColor: "#6b7280"}} checked disabled/>
+                      <input className="form-radio hover:bg-gray-500" id="w-pw-upper" type="radio" style={{backgroundColor: "#6b7280"}} checked disabled/>
                       <span className="ml-2 mr-8">One uppercase character</span>
                     </label>
                     <label className="mt-1 inline-flex items-center">
-                      <input className="form-radio" type="radio" style={{backgroundColor: "#6b7280"}} checked disabled/>
+                      <input className="form-radio" id="w-pw-lower" type="radio" style={{backgroundColor: "#6b7280"}} checked disabled/>
                       <span className="ml-2 mr-8">One lowercase character</span>
                     </label>
                     <label className="mt-1 inline-flex items-center">
-                      <input className="form-radio" type="radio" style={{backgroundColor: "#6b7280"}} checked disabled/>
+                      <input className="form-radio" id="w-pw-special" type="radio" style={{backgroundColor: "#6b7280"}} checked disabled/>
                       <span className="ml-2 mr-8">One special character</span>
                     </label>
                     <label className="mt-1 inline-flex items-center">
-                      <input className="form-radio" type="radio" style={{backgroundColor: "#6b7280"}} checked disabled/>
+                      <input className="form-radio" id="w-pw-no" type="radio" style={{backgroundColor: "#6b7280"}} checked disabled/>
                       <span className="ml-2 mr-8">One number</span>
                     </label>
                   </div>
@@ -98,15 +145,16 @@ const SignUp = () => {
                         <span className="ml-2 text-gray-700">Hide</span>
                       </div>
                     </div>
-                    <input id="confirm-pw" type="password" className="mt-1 block w-full" placeholder="" />
+                    <input id="confirm-pw" type="password" className="mt-1 block w-full" placeholder="" onChange={ () => change("confirm-pw")}/>
                     <label className="mt-1 inline-flex items-center mt-2 text-sm">
-                      <input className="form-radio" type="radio" style={{backgroundColor: "#6b7280"}} checked disabled/>
+                      <input className="form-radio" id="w-confirm-pw" type="radio" style={{backgroundColor: "#6b7280"}} checked disabled/>
                       <span className="ml-2 mr-8">Password same</span>
                     </label>
                 </label>
                 <label className="block">
                   <span className="text-gray-700">Phone number</span>
-                  <input type="tel" className="mt-1 block w-full" placeholder="+6012-345 6789" />
+                  <input type="tel" className="mt-1 block w-full" id="tel" placeholder="+6012-3456789" onChange={ () => change("tel")}/>
+                  <span className="text-danger text-xs hidden" id="w-tel">Wrong phone format.</span>
                 </label>
                 <label className="block">
                   <span className="text-gray-700">Birth date</span>

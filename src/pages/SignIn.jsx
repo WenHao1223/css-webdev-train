@@ -2,7 +2,7 @@ import React from "react";
 import 'boxicons';
 
 import { Link } from "react-router-dom";
-import './index.css';
+import './../index.css';
 
 const hide = (id) => {
   if($(`#${id}`).attr("type") === "password"){
